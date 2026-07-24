@@ -2,11 +2,15 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 「연역」을 처음부터 끝까지 클릭으로 완주할 수 있는 Ren'Py 게임 뼈대를 만든다. 임시 그림/임시 대사를 쓰되, 닉네임 입력·메신저 UI·모션 연출·3막 구조·저장/불러오기 등 모든 커스텀 시스템이 실제로 작동한다.
+**Goal:** 「연역」을 처음부터 끝까지 클릭으로 완주할 수 있는 Ren'Py 게임 뼈대를 만들고, **웹으로 빌드해 GitHub Pages에 배포**하여 **아이폰 사파리에서 링크로 플레이**되게 한다. 임시 그림/임시 대사를 쓰되, 닉네임 입력·메신저 UI·모션 연출·3막 구조·저장/불러오기 등 모든 커스텀 시스템이 실제로 작동한다.
 
-**Architecture:** Ren'Py 프로젝트를 `C:\Users\jinwoo\Visual Novel\yeonyeok\`에 생성한다. `game/` 폴더 안에서 **책임별로 파일을 분리**한다 — 캐릭터/변수, 모션/트랜지션, 메신저 UI, 막별 스토리 스크립트. 임시 아트는 Ren'Py 내장 `Placeholder`/`Solid` 디스플레이어블로 대체해, 실제 이미지 없이도 전 구간이 돌아가게 한다. 검증은 각 단계마다 `lint`(문법 검사) 통과 + 지정된 화면을 눈으로 확인하는 방식이다.
+**배포 타깃(중요):** 최종 플레이 환경은 **아이폰 사파리(웹)**, 단 1명 공유, 스토어·비용 없음. Ren'Py "Web" 배포 → GitHub Pages 호스팅 → URL 접속(홈화면 추가 시 앱처럼). 아이폰은 세로 화면이므로 **가로 회전 권장 안내**를 넣고, **닉네임 키보드 입력이 웹에서 불안정할 위험**에 대비해 폴백을 둔다.
 
-**Tech Stack:** Ren'Py 8.x (Python 기반 VN 엔진), Ren'Py Screen Language(UI), ATL(애니메이션), Git(버전 관리).
+**Architecture:** Ren'Py 프로젝트를 `C:\Users\jinwoo\Visual Novel\yeonyeok\`에 생성한다. `game/` 폴더 안에서 **책임별로 파일을 분리**한다 — 캐릭터/변수, 모션/트랜지션, 메신저 UI, 막별 스토리 스크립트. 임시 아트는 Ren'Py 내장 `Placeholder`/`Solid` 디스플레이어블로 대체해, 실제 이미지 없이도 전 구간이 돌아가게 한다. 검증은 각 단계마다 `lint`(문법 검사) 통과 + PC에서 화면 확인, 그리고 마지막에 **실제 아이폰 사파리 확인**이다.
+
+**Tech Stack:** Ren'Py 8.x (Python 기반 VN 엔진), Ren'Py Screen Language(UI), ATL(애니메이션), Ren'Py Web 빌드, GitHub Pages(호스팅), Git(버전 관리).
+
+**참고:** GitHub 저장소는 이미 연결됨 — remote `origin` = https://github.com/JMangoo/visaul-novel.git, 브랜치 `main`. 최초 커밋(기획서·계획서)도 푸시 완료. 따라서 아래 Task 0은 이미 수행된 상태다(재실행 불필요).
 
 ---
 
@@ -46,12 +50,14 @@ C:\Users\jinwoo\Visual Novel\
 
 ---
 
-## Task 0: Git 저장소 초기화
+## Task 0: Git 저장소 초기화 ✅ (완료됨 — 참고용)
+
+> 이 태스크는 이미 수행되었다: `git init`, `.gitignore` 작성, 기획서·계획서 최초 커밋, remote `origin` 연결(https://github.com/JMangoo/visaul-novel.git), `main` 브랜치 푸시까지 완료. 아래는 기록용이며 재실행 불필요.
 
 **Files:**
 - Create: `C:\Users\jinwoo\Visual Novel\.gitignore`
 
-- [ ] **Step 1: 저장소 초기화**
+- [x] **Step 1: 저장소 초기화**
 
 작업 폴더에서:
 ```bash
@@ -175,17 +181,40 @@ define sister_voice = Character("언니", color="#c9a227")
 
 
 # 닉네임 입력 라벨 -----------------------------------------------------
+# 아이폰 웹에서는 renpy.input() 키보드가 불안정할 수 있어, '직접 입력'과
+# '프리셋 선택' 두 경로를 모두 제공한다(폴백 안전장치).
 label ask_nickname:
     scene black
     "..."
-    $ raw = renpy.input("당신을 뭐라고 부를까?", default="", length=12)
-    $ raw = raw.strip()
-    if raw == "":
-        $ player_name = "이름 없음"
-    else:
-        $ player_name = raw
+    menu:
+        "이름을 직접 입력한다":
+            $ raw = renpy.input("당신을 뭐라고 부를까?", default="", length=12).strip()
+            if raw == "":
+                call screen preset_names
+                $ player_name = _return
+            else:
+                $ player_name = raw
+        "제시된 이름 중에 고른다":
+            call screen preset_names
+            $ player_name = _return
     "그래, [player_name]."
     return
+
+# 프리셋 이름 선택 스크린 (키보드 없이도 진행 가능)
+screen preset_names():
+    modal True
+    add Solid("#000000cc")
+    frame:
+        xalign 0.5 yalign 0.5
+        padding (30, 24)
+        background Frame(Solid("#14141c"), 12, 12)
+        vbox:
+            spacing 14
+            text "이름을 선택해." size 28 color "#e0e0e0" xalign 0.5
+            textbutton "서리" action Return("서리") xalign 0.5
+            textbutton "재이" action Return("재이") xalign 0.5
+            textbutton "무명" action Return("무명") xalign 0.5
+            textbutton "K"   action Return("K")   xalign 0.5
 ```
 
 - [ ] **Step 2: lint 통과 확인**
@@ -680,6 +709,8 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 ## 진입 흐름 ---------------------------------------------------------
 label start:
     scene black
+    # 아이폰 웹 대비: 가로 화면 권장 안내(PC에서도 무해).
+    centered "{size=22}편안한 감상을 위해 기기를 가로로 눕히고,\n소리를 켜 주세요.{/size}"
     "당신은 감정을 신뢰하지 않는다. 오직 논리만이 세상을 설명한다고 믿는다."
 
     call ask_nickname
@@ -787,21 +818,105 @@ Expected: 오류 0건. 경고 목록을 훑어 이미지/라벨 미정의 경고
 Run: Launch Project → 새 게임으로 엔딩까지.
 Expected: Task 10 Step 3의 1~5가 전부 재현되고, 어떤 크래시도 없음. 두 선택지 조합을 바꿔가며 최소 2회 완주해 양쪽 분기 모두 정상 종료 확인.
 
-- [ ] **Step 3: (선택) 배포용 빌드 `[사용자]`**
-
-런처 → "Build Distributions" → Windows 선택 → 빌드.
-Expected: 실행 가능한 배포 폴더/zip 생성(뼈대 확인용, 필수 아님).
-
-- [ ] **Step 4: 최종 커밋 + 태그**
+- [ ] **Step 3: 최종 커밋 + 태그**
 
 ```bash
 cd "C:/Users/jinwoo/Visual Novel"
 git add -A
-git commit -m "chore: walking skeleton complete (playable end-to-end)
+git commit -m "chore: walking skeleton complete (playable end-to-end on desktop)
 
 Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 git tag skeleton-v1
+git push origin main --tags
 ```
+
+> PC에서 완주가 검증되면, 이제 웹 빌드 → 아이폰 배포로 넘어간다(Task 13~15).
+
+---
+
+## Task 13: Ren'Py 웹 빌드 생성
+
+**Files:** 빌드 산출물 (git 미추적)
+
+- [ ] **Step 1: Web 플랫폼 지원 설치 `[사용자]`**
+
+런처 → 프로젝트 `yeonyeok` 선택 → "Build Distributions" → 목록에 "Web"이 없으면 런처가 안내하는 대로 **Web 지원(웹 빌드용 파일)**을 먼저 다운로드/설치한다. (Ren'Py 런처가 자동으로 받아준다.)
+Expected: Build Distributions 화면에 "Web" 항목 체크박스가 나타남.
+
+- [ ] **Step 2: 웹 빌드 실행**
+
+런처 → "Build Distributions" → **Web** 만 체크 → "Build".
+Expected: `C:\Users\jinwoo\Visual Novel\yeonyeok-dists\` (또는 런처가 알려주는 경로)에 `yeonyeok-<버전>-web\` 폴더가 생성됨. 그 안에 `index.html`, `game.zip`, `web/` 등이 있음.
+
+- [ ] **Step 3: 로컬에서 웹 빌드 동작 확인**
+
+웹 빌드는 `file://`로 바로 못 열고 로컬 서버가 필요하다. 빌드된 web 폴더에서:
+```bash
+cd "<web 빌드 폴더 경로>"
+python -m http.server 8000
+```
+브라우저에서 `http://localhost:8000/` 접속.
+Expected: 게임이 브라우저에서 로드되어 시작 화면이 뜨고, 클릭으로 진행된다. (닉네임은 '프리셋 선택' 경로로도 진행 가능한지 반드시 확인.)
+
+---
+
+## Task 14: GitHub Pages 배포
+
+**Files:**
+- 새 브랜치 `gh-pages`에 웹 빌드 산출물 커밋
+
+- [ ] **Step 1: 웹 빌드 산출물을 배포 폴더로 복사**
+
+`yeonyeok-<버전>-web\` 안의 **내용물(index.html 등)** 을 저장소 내 배포 폴더로 복사한다. 여기서는 별도 브랜치를 쓴다:
+```bash
+cd "C:/Users/jinwoo/Visual Novel"
+git checkout --orphan gh-pages
+git rm -rf . >/dev/null 2>&1 || true
+cp -r "<web 빌드 폴더 경로>/." .
+touch .nojekyll
+git add -A
+git commit -m "deploy: web build to GitHub Pages
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+git push -u origin gh-pages
+git checkout main
+```
+Expected: `gh-pages` 브랜치에 `index.html`이 루트에 있는 상태로 푸시됨.
+
+- [ ] **Step 2: GitHub Pages 활성화 `[사용자]`**
+
+GitHub 저장소 웹페이지 → Settings → Pages → "Build and deployment" → Source: **Deploy from a branch** → Branch: **gh-pages** / **/(root)** → Save.
+Expected: 잠시 후 상단에 배포 URL이 표시됨. 예상 URL: `https://jmangoo.github.io/visaul-novel/`
+
+- [ ] **Step 3: PC 브라우저에서 배포 URL 확인**
+
+배포 URL을 PC 브라우저에서 연다(반영까지 1~2분 걸릴 수 있음).
+Expected: 게임이 정상 로드·완주됨.
+
+---
+
+## Task 15: 아이폰 실기기 확인 `[사용자]`
+
+**Files:** 없음 (검증)
+
+- [ ] **Step 1: 아이폰 사파리에서 접속 `[사용자]`**
+
+아이폰 사파리에서 배포 URL 접속.
+Expected: 게임 로드, 탭으로 진행, 닉네임 선택 가능, 메신저 UI 정상.
+
+- [ ] **Step 2: 가로 화면 확인**
+
+기기를 가로로 회전.
+Expected: 가로 화면에서 레이아웃이 깨지지 않고 텍스트·UI가 읽힘. (세로에서 답답하면 게임 시작부의 회전 안내 문구가 보임.)
+
+- [ ] **Step 3: 홈 화면에 추가(앱처럼) 확인 `[사용자]`**
+
+사파리 공유 버튼 → "홈 화면에 추가".
+Expected: 홈 화면에 아이콘 생성, 탭하면 전체화면으로 실행.
+
+- [ ] **Step 4: 결과 피드백**
+
+닉네임 입력 방식(직접 입력이 되는지/프리셋만 되는지), 성능, 조작감, 깨지는 부분을 사용자가 알려준다 → 필요 시 후속 조정.
 
 ---
 
