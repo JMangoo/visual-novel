@@ -129,7 +129,7 @@ Expected: 이후 생성/조회되는 프로젝트가 이 폴더에 저장됨.
 
 - [ ] **Step 1: 새 프로젝트 생성 `[사용자]`**
 
-런처 → "Create New Project" → 이름 `yeonyeok` 입력 → 해상도는 1280x720, 색상 테마는 아무거나(뒤에서 커스터마이즈) → 생성.
+런처 → "Create New Project" → 이름 `yeonyeok` 입력 → 해상도는 1920x1080(아이폰 레티나 대비 선명도, Ren'Py 권장 절충안), 색상 테마는 아무거나(뒤에서 커스터마이즈) → 생성.
 Expected: `C:\Users\jinwoo\Visual Novel\yeonyeok\` 폴더와 `game\` 하위 파일들이 생성됨.
 
 - [ ] **Step 2: 기본 실행 확인**
@@ -860,27 +860,23 @@ Expected: 게임이 브라우저에서 로드되어 시작 화면이 뜨고, 클
 
 ---
 
-## Task 14: GitHub Pages 배포
+## Task 14: GitHub Pages 배포 (coi-serviceworker 포함)
+
+> **중요(회색 화면 원인/해결):** Ren'Py 웹은 SharedArrayBuffer(`crossOriginIsolated`)가 필요한데, GitHub Pages는 COOP/COEP 헤더를 못 붙여서 그냥 올리면 **회색 화면**이 된다. 그래서 `web-deploy/coi-serviceworker.js`를 빌드에 주입하고 Ren'Py 기본 서비스워커 등록을 끈다. 이 과정을 `web-deploy/deploy-web.sh`가 자동 처리한다. (런처 "브라우저로 열기"는 자체 서버가 헤더를 붙여줘서 로컬에선 그냥 됨.)
 
 **Files:**
-- 새 브랜치 `gh-pages`에 웹 빌드 산출물 커밋
+- `web-deploy/coi-serviceworker.js`, `web-deploy/patch_index.py`, `web-deploy/deploy-web.sh` (저장소에 커밋됨)
+- 배포 대상: `gh-pages` 브랜치
 
-- [ ] **Step 1: 웹 빌드 산출물을 배포 폴더로 복사**
+- [ ] **Step 1: 배포 스크립트 실행**
 
-`yeonyeok-<버전>-web\` 안의 **내용물(index.html 등)** 을 저장소 내 배포 폴더로 복사한다. 여기서는 별도 브랜치를 쓴다:
+Ren'Py 런처 "배포본 빌드 > Web" 결과 폴더(index.html 포함)를 인자로 넘긴다:
 ```bash
 cd "C:/Users/jinwoo/Visual Novel"
-git checkout --orphan gh-pages
-git rm -rf . >/dev/null 2>&1 || true
-cp -r "<web 빌드 폴더 경로>/." .
-touch .nojekyll
-git add -A
-git commit -m "deploy: web build to GitHub Pages
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
-git push -u origin gh-pages
-git checkout main
+bash web-deploy/deploy-web.sh "/c/Users/jinwoo/Visual Novel/yeonyeok-1.0-dists/yeonyeok-1.0-web"
 ```
+스크립트가 하는 일: 빌드 복사 → `coi-serviceworker.js` 추가 → `index.html` 패치 → `.nojekyll` 추가 → `gh-pages`로 강제 푸시.
+Expected: `gh-pages` 브랜치에 패치된 `index.html`과 `coi-serviceworker.js`가 루트에 올라감. 재배포 후 테스트는 옛 서비스워커 캐시를 피해 **시크릿 창**으로.
 Expected: `gh-pages` 브랜치에 `index.html`이 루트에 있는 상태로 푸시됨.
 
 - [ ] **Step 2: GitHub Pages 활성화 `[사용자]`**
