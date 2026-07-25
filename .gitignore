@@ -20,3 +20,6 @@ Thumbs.db
 # 배경 원본 사진(용량 큼, 변환본만 커밋)
 /art/raw/
 /art/chars/
+
+# Ren'Py 빌드 산출물 (배포는 gh-pages 브랜치로)
+/yeonyeok-*-dists/
