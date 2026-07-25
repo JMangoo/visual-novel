@@ -65,9 +65,10 @@ transform surveil_gray:
 ## 뉴스 기사 화면 ---------------------------------------------------
 screen news_article(headline="", body=""):
     zorder 80
-    add Solid("#000000cc")
+    # 대사창(하단)을 가리지 않도록 상단 영역에만 깐다.
+    add Solid("#000000cc") ysize 780
     frame:
-        xalign 0.5 yalign 0.5
+        xalign 0.5 yalign 0.40
         xsize 1100
         background Frame(Solid("#f2f2ef"), 10, 10)
         padding (40, 34)
@@ -82,9 +83,9 @@ screen news_article(headline="", body=""):
 ## 통화 시도 실패 (신호만 가고 끊김) --------------------------------
 screen call_failed(caller="언니"):
     zorder 95
-    add Solid("#000000dd")
+    add Solid("#000000dd") ysize 780
     vbox:
-        xalign 0.5 yalign 0.35
+        xalign 0.5 yalign 0.30
         spacing 24
         text caller xalign 0.5 color "#c9a227" size 60 bold True
         text "발신 중..." xalign 0.5 color "#88aabb" size 30 at idle_sway

@@ -6,11 +6,11 @@ default phone_log = []
 # 메신저 화면
 screen phone_ui(title="언니"):
     zorder 90
-    # 어둡게 깔린 배경
-    add Solid("#000000aa")
+    # 어둡게 깔린 배경 — 대사창을 가리지 않도록 상단 영역에만.
+    add Solid("#000000aa") ysize 780
     frame:
-        xalign 0.5 yalign 0.5
-        xsize 620 ysize 860
+        xalign 0.5 yalign 0.42
+        xsize 620 ysize 720
         background Frame(Solid("#0b141a"), 12, 12)
         padding (14, 14)
         vbox:
@@ -50,11 +50,13 @@ screen phone_ui(title="언니"):
                                 null width 120
 
 # 통화 착신 화면
+# 주의: 어두운 배경은 대사창 위 영역(상단 72%)에만 깐다.
+# 화면 전체를 덮으면 대사가 안 읽힌다.
 screen call_ui(caller="언니"):
     zorder 95
-    add Solid("#000000dd")
+    add Solid("#000000dd") ysize 780
     vbox:
-        xalign 0.5 yalign 0.35
+        xalign 0.5 yalign 0.30
         spacing 24
         text caller xalign 0.5 color "#c9a227" size 60 bold True
         text "통화 중..." xalign 0.5 color "#88aabb" size 30 at idle_sway
