@@ -88,7 +88,7 @@ label act1:
     call pmsg("sister", "또 컵라면 먹었지")
     call pmsg("sister", "나 지금 지방이라 당분간 못 올라가. 이거 잡으면 진짜 큰 건이야")
     call pmsg("me", "언제 와")
-    call pmsg("sister", "몰라 ㅋㅋ 끝나면 바로 갈게")
+    call pmsg("sister", "몰라 여기 일이 언제 끝날지를 모르겠어")
     call pmsg("sister", "너 문 잘 잠그고 다녀")
     hide screen phone_ui with dissolve
 

@@ -185,11 +185,11 @@ label act1_thursday:
     call pmsg("sister", "너 지금 그 편지 보낸 사람이랑 엮인 거야")
     call pmsg("sister", "이거 진짜 위험해")
     call pmsg("me", "언니 언제 와")
-    call pmsg("sister", "나 지금 진짜 미치겠어")
-    call pmsg("sister", "여기 어제부터 도로 통제됐어. 산사태 나서")
-    call pmsg("sister", "기차도 끊겼고")
-    call pmsg("sister", "지금 알아보고 있으니까 뚫리는 대로 바로 갈게")
-    call pmsg("sister", "그리고 너 오늘은 그냥 자. 아무것도 하지 말고")
+    call pmsg("sister", "나도 지금 미치겠는데 여기 일이 안 끝나")
+    call pmsg("sister", "이번 주에 마감이라 밤새고 있어")
+    call pmsg("sister", "대신 내가 아는 형사 있어. 그쪽으로 물어볼게")
+    call pmsg("sister", "너 오늘부터 밤에 나가지 마. 진짜로")
+    call pmsg("sister", "그리고 도어락 비번 바꿨어? 안 바꿨으면 내일 바로 바꿔")
     hide screen phone_ui with dissolve
 
     "나는 폰을 엎어놓았다."
