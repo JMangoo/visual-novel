@@ -78,6 +78,8 @@ label act1_thursday:
     "장난이었구나. 누군가 아주 공들여서 친 장난이었고, 나는 이틀을 날렸고—"
 
     hide rain
+    play sound stinger
+    play ambient heartbeat fadein 0.5 loop
     show bg alley at shudder
     "그때 위에서 소리가 났다."
     "무거운 게 넘어지는 소리. 근데 짧았다. 생각보다 훨씬 짧고 조용했다."
@@ -127,6 +129,7 @@ label act1_thursday:
     "나는 골목 입구를 다시 봤다."
     "{b}들어온 사람은 아무도 없었다.{/b} 나는 그 길을 사십 분 동안 보고 있었다."
     hide rain
+    stop ambient fadeout 3.0
 
 
 ## 장면 6 — 2차 예고장 · 감시 1회차 ---------------------------------

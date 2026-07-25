@@ -62,8 +62,11 @@ screen call_ui(caller="언니"):
         text "통화 중..." xalign 0.5 color "#88aabb" size 30 at idle_sway
 
 # 메시지 한 줄 출력 라벨 (클릭으로 넘어감)
+# 상대가 보낸 메시지에만 알림음. 내가 보낸 건 조용히.
 label pmsg(who, body):
     $ phone_log.append((who, body))
+    if who != "me":
+        play sound msg
     $ renpy.restart_interaction()
     pause
     return

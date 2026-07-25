@@ -162,6 +162,7 @@ label act2_after_investigate:
     $ clue_drawer = True
     "나는 서랍을 봤다. 오른쪽이 맞았다."
 
+    play sound paper
     "저녁에, 현관 쪽에서 종이 스치는 소리가 났다."
     "나는 뛰어가서 문을 열었다. 복도는 비어 있었다. 센서등이 방금 켜진 채로 깜빡였다."
     "발밑에 봉투가 있었다."
@@ -201,6 +202,8 @@ label act2_after_investigate:
 
     scene bg room with fade_slow
     "{size=-6}00:41{/size}"
+    play sound stinger
+    play ambient heartbeat fadein 0.5 loop
     show bg room at shudder
     "소리가 났을 때 나는 그게 뭔지 몰랐다."
     "무거운 게 떨어지는 소리. 근데 사람들이 상상하는 그런 소리가 아니었다. 훨씬 짧고, 훨씬 조용했다."
@@ -240,6 +243,7 @@ label act2_after_investigate:
     op119 "여보세요? 말씀하세요."
     me "…사람이. 사람이 계단에 있어요."
     hide screen call_failed with dissolve
+    stop ambient fadeout 3.0
 
 
 ## 장면 5 — 수요일: 없는 것 ------------------------------------------
@@ -410,6 +414,7 @@ label act2_report_guard:
 label act2_last:
     scene bg room with fade_slow
     "이번엔 소리를 들었다."
+    play sound paper
     "종이가 문틈으로 들어오는 소리. 아주 작았다."
     "나는 문까지 네 걸음 걸리는 거리에 있었고, 그 네 걸음을 걷는 동안 복도에서 발소리가 멀어지지 않았다."
     "문을 열었다. 아무도 없었다."

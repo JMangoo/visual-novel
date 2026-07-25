@@ -101,6 +101,7 @@ label act3:
 
 ## 장면 4 — 작업실 · 감시 4회차 -------------------------------------
     scene bg basement with fade_slow
+    play music basement fadein 3.0 loop
     "안은 넓었다. 창고였던 것 같았다."
     "그리고 벽에 모니터가 있었다."
     "하나가 아니었다. 열몇 개가 벽에 붙어 있었다."
@@ -123,6 +124,7 @@ label act3:
     "스ㅡㅡㅡ으…"
     "규칙적이었다. 숨소리 같기도 하고 아닌 것 같기도 했다."
     "나는 주머니에 손을 넣었다. 신문지 너머로 손잡이가 잡혔다."
+    play ambient heartbeat fadein 1.5 loop
     pause 1.0
     "한 걸음."
     pause 0.8
@@ -133,6 +135,7 @@ label act3:
     "나는 그걸 걷었다."
 
     # 붉은 점멸 → 천천히 어둑하게 드러남
+    play sound stinger
     scene bg basement with Fade(0.12, 0.06, 2.2, color="#5e0000")
     pause 1.0
     "처음엔 그게 뭔지 몰랐다."
@@ -376,6 +379,8 @@ label act3:
     scene black with fade_slow
     show screen rec_only
     "스ㅡ…"
+    stop ambient fadeout 2.0
+    stop music fadeout 3.0
     "……"
     pause 2.0
     hide screen rec_only with dissolve
