@@ -40,6 +40,16 @@ transform rec_blink:
         linear 0.6 alpha 0.2
         repeat
 
+# REC 표시만 단독으로. 감시 화면 전환 없이 '녹화 중'만 알린다.
+# 3막에서 "나는 갔어"가 거짓임을 암시하는 용도. 주인공은 모르고 플레이어만 본다.
+screen rec_only():
+    zorder 100
+    hbox:
+        xalign 0.03 yalign 0.96
+        spacing 10
+        text "●" size 30 color "#cc2222" at rec_blink
+        text "REC" size 28 color "#c8c8c8"
+
 # 감시 시점 진입/이탈 (흑백 + 스캔라인 + 떨림)
 label surveil_start(stamp="2026-07-24 00:03:41", rec=True):
     $ renpy.show_screen("surveil_overlay", stamp=stamp, rec=rec)

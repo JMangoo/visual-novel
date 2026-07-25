@@ -505,8 +505,4 @@ label act2_last:
     "살아 있다."
     "나는 그때 그렇게 생각했다."
 
-    # --- 여기까지 2막. 3막은 아직 집필 중이므로 임시 종료 ---
-    scene black with fade_slow
-    "{size=-8}— 2막 종료 —{/size}"
-    "{size=-8}3막은 아직 제작 중입니다.{/size}"
-    return
+    jump act3

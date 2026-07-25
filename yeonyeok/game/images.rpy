@@ -15,6 +15,12 @@ image bg shops    = Solid("#181410")   # 삼거리 상가
 image bg villa    = Solid("#0e1014")   # 박정호의 빌라(복도/실내)
 image bg backyard = Solid("#0a0c10")   # 빌라 뒤편
 
+# 3막 추가 배경
+image bg stairsdown = Solid("#08090c")  # 지하로 내려가는 계단
+image bg basement   = Solid("#0b0a0c")  # 지하 2층 작업실
+image bg empty704   = Solid("#131316")  # 텅 빈 704호
+image bg morning    = Solid("#2a2c33")  # 비 그친 아침 거리
+
 # 캐릭터 — 내장 Placeholder 실루엣.
 image decoy_ph = Placeholder("boy")
 
