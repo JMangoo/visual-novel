@@ -136,7 +136,7 @@ label act3:
 
     # 붉은 점멸 → 천천히 어둑하게 드러남
     play sound stinger
-    scene bg basement with Fade(0.12, 0.06, 2.2, color="#5e0000")
+    scene cg_truth with Fade(0.12, 0.06, 2.2, color="#5e0000")
     pause 1.0
     "처음엔 그게 뭔지 몰랐다."
     "사람이라는 건 알았는데, 어디가 어딘지가 안 읽혔다."
@@ -171,12 +171,16 @@ label act3:
     voiceq "천천히 숨 쉬어요. 그러다 쓰러져요."
     "나는 고개를 들었다."
     pause 1.0
+    show nb_normal at stand_close with dissolve
     "704호였다."
     me "…언니한테."
     me "언니한테 뭘 한 거야."
     nb "아직 안 끝났어요."
     "그가 웃었다."
     nb "그렇게 물어보니까 좀 이상하네."
+    play sound stinger
+    hide nb_normal
+    show nb_true at stand_close with Fade(0.10, 0.04, 1.0, color="#3a0000")
     nbx "우리 이제 그렇게 안 해도 되잖아."
 
     show bg basement at shudder
@@ -267,6 +271,7 @@ label act3:
     "그 사람은 계속 웃고 있었다. 내 귀 바로 옆에서."
     "목이 졸리는 것보다 그게 더 참기 힘들었다."
     "마지막으로 본 게 형광등이었다. 깜빡이는 게 점점 느려졌다."
+    hide nb_true
     scene black with fade_slow
 
 
@@ -364,6 +369,7 @@ label act3:
     "두 번째 줄에 언니가 없었다."
     "그래서 나는 세 번을 더 계산했다. 언니가 사는 경우를 만들려고."
     "안 만들어졌다."
+    scene cg_truth with dissolve
     "스ㅡ으…"
     me "언니."
     me "…알고 있었어?"

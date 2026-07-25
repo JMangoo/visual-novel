@@ -58,6 +58,7 @@ label act2_investigate:
 
 label act2_ask_clerk:
     scene bg store with fade_slow
+    show clerk_ch at stand_c with dissolve
     "야간이었다. 그 애 혼자였다."
     "나는 컵라면을 하나 들고 계산대로 갔다. 살 생각은 없었다."
     me "저기요. 목요일 밤에 어디 있었어요?"
@@ -88,6 +89,7 @@ label act2_ask_clerk:
 
 label act2_ask_boss:
     scene bg store with fade_slow
+    show boss_ch at stand_c with dissolve
     boss "아이고 아가씨, 어제 뉴스 봤어? 박 사장 그 양반—"
     me "네. 봤어요."
     boss "아이고 참… 사람 일이 그래. 어제까지 술 사가던 사람이."
@@ -109,6 +111,7 @@ label act2_ask_boss:
 
 label act2_ask_guard:
     scene bg guard with fade_slow
+    show guard_ch at stand_c with dissolve
     me "저번에 CCTV 얘기했던 703호인데요."
     guard "아… 그거. 관리사무소에서 안 된대요. 개인 사유로는."
     me "화요일 밤 거요?"
@@ -249,6 +252,7 @@ label act2_after_investigate:
 ## 장면 5 — 수요일: 없는 것 ------------------------------------------
     scene bg hallway with fade_slow
     "복도에 나갔더니 704호 사람이 문 앞에 서 있었다. 관리사무소에서 붙인 안내문을 읽고 있었다."
+    show nb_normal at stand_r with dissolve
     nb "아… 이거 보셨어요?"
     nb "12층 분이라던데. 저는 얼굴도 모르는데 참…"
     me "네."
@@ -257,6 +261,7 @@ label act2_after_investigate:
     "그가 안내문을 다시 봤다."
     nb "…이런 일 있고 나니까 좀 그러네요."
     nb "혼자 사시죠? 문 잘 잠그고 다니세요."
+    hide nb_normal with dissolve
 
     scene bg room with fade_slow
     "사고사로 처리됐다."
@@ -341,6 +346,7 @@ label act2_report_clerk:
 
     scene bg alley with fade_slow
     show rain
+    show clerk_ch at stand_c with dissolve
     "나오는데 그 애가 서 있었다. 가게 앞이 아니라 길 건너에."
     clerk "…경찰이 제 폰을 가져갔어요."
     clerk "거기에 뭐가 있는지 아세요? …사진이요."
@@ -363,6 +369,7 @@ label act2_report_clerk:
     me "말해봐요."
     clerk "싫어요."
     clerk "손님도 이제 저 없이 알아내보세요."
+    hide clerk_ch with dissolve
     hide rain
     return
 
@@ -373,6 +380,7 @@ label act2_report_boss:
 
     scene bg store with fade_slow
     "가게 문이 며칠 닫혀 있었다. 다시 갔더니 사장이 카운터에 앉아 있었다. 나를 보고 웃지 않았다."
+    show boss_ch at stand_c with dissolve
     boss "…왔네."
     boss "경찰이 내 통화기록을 다 봤어. 목요일 밤에 누구랑 통화했는지."
     boss "그거 우리 와이프한테 갔어."
@@ -398,6 +406,7 @@ label act2_report_guard:
 
     scene bg elevator with fade_slow
     "그날 저녁, 그 사람이 짐을 들고 나오고 있었다. 종이 상자 하나였다."
+    show guard_ch at stand_c with dissolve
     guard "…아가씨."
     "그는 화를 내지 않았다. 그게 더 안 좋았다."
     guard "내가 그날 졸았어요."

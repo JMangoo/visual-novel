@@ -1,5 +1,30 @@
 ## 모션(ATL) · 트랜지션 · 파티클 -------------------------------------
 
+## 캐릭터 배치 ------------------------------------------------------
+# 스프라이트는 높이 980px. 화면 아래에 발이 닿게 세운다.
+transform stand_c:
+    xalign 0.5 yalign 1.0
+    alpha 0.0
+    easein 0.4 alpha 1.0
+
+transform stand_l:
+    xalign 0.26 yalign 1.0
+    alpha 0.0
+    easein 0.4 alpha 1.0
+
+transform stand_r:
+    xalign 0.74 yalign 1.0
+    alpha 0.0
+    easein 0.4 alpha 1.0
+
+# 가까이 다가온 느낌 (3막 대면)
+transform stand_close:
+    xalign 0.5 yalign 1.0
+    zoom 1.18
+    alpha 0.0
+    easein 0.6 alpha 1.0
+
+
 # 왼쪽에서 슬라이드 등장
 transform slide_in_left:
     xpos -0.4 yalign 1.0 alpha 0.0

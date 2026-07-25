@@ -28,40 +28,14 @@ TOLERANCE = 42          # 배경으로 볼 색 차이. 크게 하면 더 많이 
 
 
 def remove_bg(img: Image.Image, tol: int = TOLERANCE) -> Image.Image:
-    """가장자리에서 시작하는 flood fill 로 단색 배경만 지운다."""
-    img = img.convert("RGBA")
-    w, h = img.size
-    px = img.load()
+    """인물만 남기고 배경을 지운다.
 
-    # 네 모서리 색의 평균을 배경색으로 본다
-    corners = [px[0, 0], px[w - 1, 0], px[0, h - 1], px[w - 1, h - 1]]
-    bg = tuple(sum(c[i] for c in corners) // 4 for i in range(3))
-
-    def close(c):
-        return (abs(c[0] - bg[0]) + abs(c[1] - bg[1]) + abs(c[2] - bg[2])) < tol * 3
-
-    seen = bytearray(w * h)
-    q = deque()
-    for x in range(w):
-        for y in (0, h - 1):
-            if close(px[x, y]):
-                q.append((x, y)); seen[y * w + x] = 1
-    for y in range(h):
-        for x in (0, w - 1):
-            if close(px[x, y]):
-                q.append((x, y)); seen[y * w + x] = 1
-
-    while q:
-        x, y = q.popleft()
-        px[x, y] = (0, 0, 0, 0)
-        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nx, ny = x + dx, y + dy
-            if 0 <= nx < w and 0 <= ny < h and not seen[ny * w + nx]:
-                if close(px[nx, ny]):
-                    seen[ny * w + nx] = 1
-                    q.append((nx, ny))
-
-    return img
+    단순 flood fill 은 옷 색이 배경과 비슷하면 인물 안쪽까지 파먹는다.
+    (실제로 회색 배경 + 회색 후드/흰 간호사복에서 크게 실패했다.)
+    그래서 인물 분할 신경망(rembg)을 쓴다.
+    """
+    from rembg import remove
+    return remove(img.convert("RGBA"))
 
 
 def trim(img: Image.Image) -> Image.Image:

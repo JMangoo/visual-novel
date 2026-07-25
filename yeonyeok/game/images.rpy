@@ -17,18 +17,26 @@ image bg stairsdown = "images/bg/stairsdown.png"  # 지하로 내려가는 계�
 image bg basement   = "images/bg/basement.png"    # 지하 2층 작업실
 image bg morning    = "images/bg/morning.png"     # 비 그친 아침 거리
 
-# 아직 사진이 없는 것
-image bg empty704 = Solid("#131316")   # 텅 빈 704호 (복도 사진으로 대체 가능)
+image bg empty704 = "images/bg/empty704.png"   # 텅 빈 704호
 image bg climax   = "images/bg/basement.png"   # 구 스켈레톤 호환
 
-# 캐릭터 — 내장 Placeholder 실루엣.
-image decoy_ph = Placeholder("boy")
+# 최후의 진실 CG — 역광 실루엣
+image cg_truth = "images/bg/cg_sister.png"
 
-# 살인마 — 가려진 형상. 어두운 실루엣으로 대체.
-image killer_ph = Placeholder("bg")
+# 예고장(문서)
+image note = "images/bg/note.png"
 
-# 최후의 진실 CG 자리표시.
-image cg_truth = Solid("#2a0000")
 
-# 예고장(문서) 자리표시.
-image note = Solid("#e8e4d8")
+## 캐릭터 스프라이트 ------------------------------------------------
+## 원본 art/chars/, 변환 art/process_chars.py (rembg로 배경 제거)
+image nb_normal = "images/char/char_neighbor.png"    # 이웃A 평상시
+image nb_true   = "images/char/char_neighbor_x.png"  # 이웃A 정체 공개
+image park_ch   = "images/char/char_park.png"        # 박 사장
+image nurse_ch  = "images/char/char_nurse.png"       # 윤미경
+image boss_ch   = "images/char/char_boss.png"        # 편의점 사장
+image guard_ch  = "images/char/char_guard.png"       # 경비원
+image clerk_ch  = "images/char/char_clerk.png"       # 알바생
+
+# 구 스켈레톤 호환
+image decoy_ph = "images/char/char_clerk.png"
+image killer_ph = "images/char/char_neighbor_x.png"

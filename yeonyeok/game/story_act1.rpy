@@ -40,6 +40,7 @@ label act1:
     "그런 걸 읽으면 화가 나야 정상인 것 같은데, 나는 그냥 '아 이건 템플릿이네' 하고 닫았다."
 
     "옆에서 술 냄새가 났다."
+    show park_ch at stand_r
     park "어이, 아가씨."
     "아가씨. 나는 못 들은 척 진열대를 봤다."
     park "…나 예전엔 사업했어. 진짜야. 직원도 열댓 명 뒀었고."
@@ -69,6 +70,8 @@ label act1:
             "힘내라는 말을 나한테 하는 게 좀 웃겼다. 나는 짧게 목례하고 계산대로 갔다."
             "그는 봉투도 안 받고 소주 두 병을 그냥 들고 나갔다. 비를 맞으면서 걸어가는 뒷모습이 유리문에 잠깐 비쳤다."
 
+    hide park_ch with dissolve
+    show clerk_ch at stand_c with dissolve
     "계산대의 알바생은 눈을 안 마주쳤다."
     clerk "봉투 필요하시죠."
     "물음표가 없는 말투였다. 나는 카드를 내밀었다."
@@ -97,7 +100,9 @@ label act1:
     "나는 그게 좀 안쓰럽고, 좀 부럽다. 나는 아직 밀릴 자리도 없으니까."
 
     "엘리베이터가 내려왔다. 문이 열리자 안에서 여자가 하나 내렸다. 간호사복 위에 얇은 가디건. 손에는 편의점 커피."
+    show nurse_ch at stand_c with dissolve
     "나랑 스치면서 고개를 살짝 숙였다. 나도 숙였다. 그게 전부였다."
+    hide nurse_ch with dissolve
     "같은 건물 사람이다. 이 시간에 나가는 걸 몇 번 봤으니까 밤 근무인가 보다."
     "{i}(윗층이었나. 엘리베이터가 늘 위에서 내려오던데.){/i}"
 
@@ -105,6 +110,7 @@ label act1:
 
     scene bg hallway with fade_slow
     "703호 앞에 섰을 때, 704호 문이 열렸다."
+    show nb_normal at stand_r with dissolve
     nb "아, 안녕하세요."
     "옆집 사람이다. 재활용 봉투를 들고 나오던 참인 것 같았다."
     nb "비 많이 맞으셨네요. 우산 없으셨구나."
@@ -115,6 +121,7 @@ label act1:
     me "괜찮아요."
     "사실 시끄러웠는지 기억도 안 났다."
     nb "그럼 들어가세요."
+    hide nb_normal with dissolve
 
     play sound doorlock
     "나는 도어락을 눌렀다. 삐빅."
@@ -281,6 +288,7 @@ label act1_wednesday:
     "누가 우리 집에 들어왔다. 그건 확실하다."
 
     scene bg guard with dissolve
+    show guard_ch at stand_c with dissolve
     "1층 로비 끝에 경비실이 있다. 나가는 길에 유리창을 두드렸다."
     guard "…네."
     me "어제 밤에 우리 집에 누가 들어온 것 같아서요. 7층 703호인데요."
@@ -303,6 +311,7 @@ label act1_wednesday:
     "경비실을 나와서 그대로 편의점 쪽으로 걸었다. 낮인데도 하늘이 어두웠다."
 
     scene bg store with fade_slow
+    show boss_ch at stand_c with dissolve
     "야간에 있는 애가 아니라 사장이 서 있었다. 나를 보더니 웃었다."
     boss "어! 아가씨 왔네. 오늘은 라면 말고 뭐 좀 드셔."
     "이 사람은 늘 이런 식으로 말한다. 친한 척이 몸에 밴 사람."
@@ -326,6 +335,7 @@ label act1_wednesday:
     "열 시 사십 분에 다시 나갔다."
 
     scene bg store with fade_slow
+    show clerk_ch at stand_l with dissolve
     "나는 잡지 코너 앞에 서서 삼십 분을 기다렸다."
     "그리고 열한 시 십오 분에, 그 사람이 들어왔다."
     "진짜 있었다."

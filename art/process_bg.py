@@ -35,6 +35,8 @@ PRESETS = {
     "dark":   dict(bright=0.46, sat=0.28, contrast=1.12, blue=14, grain=15, vignette=0.70),
     # 아침 — 색은 빠졌지만 밝기는 남긴다
     "dawn":   dict(bright=0.68, sat=0.22, contrast=1.02, blue=12, grain=10, vignette=0.40),
+    # AI로 이미 톤을 잡아둔 CG/소품 — 살짝만 손댄다. 더 누르면 안 보인다.
+    "plain":  dict(bright=0.88, sat=0.55, contrast=1.04, blue=8, grain=9, vignette=0.30),
 }
 
 # 파일별 프리셋. 여기 없으면 기본값(--preset, 기본 night) 사용.
@@ -52,6 +54,8 @@ FILE_PRESET = {
     "basement": "dark",
     "morning": "dawn",
     "empty704": "indoor",
+    "cg_sister": "plain",
+    "note": "plain",
 }
 
 

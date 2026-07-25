@@ -25,6 +25,7 @@ label act1_thursday:
     "3층짜리 빌라. 계단에 우편물이 쌓여 있었다. 대부분 고지서 종류."
     "302호. 초인종을 눌렀다."
     "문이 조금 열렸다."
+    show park_ch at stand_c with dissolve
     parkn "…누구쇼."
     me "저 밑에 편의점에서 뵌 적 있어요."
     parkn "편의점?"
@@ -46,6 +47,7 @@ label act1_thursday:
     "문이 닫히려다 멈췄다."
     parkn "…아가씨."
     parkn "그날 얘기 들어줘서 고마웠어."
+    hide park_ch with dissolve
     "문이 닫혔다."
     "그 말을 듣는데 뒤통수가 서늘했다."
 
