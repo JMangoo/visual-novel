@@ -60,15 +60,17 @@ def loop_fade(x: np.ndarray, fade: int = 2000) -> np.ndarray:
 
 # ── 1. 빗소리 (메인 앰비언스, 루프) ──────────────────────────────
 def rain(seconds=12.0):
+    """추적추적 내리는 비. 쉭쉭거리는 고역이 많으면 '소음'으로 들리므로
+    저역통과를 두 번 걸어 창밖에서 들리는 먹먹한 소리로 만든다."""
     n = int(SR * seconds)
-    # 굵은 빗줄기: 노이즈를 저역통과 → 먹먹한 쉭 소리
-    base = lowpass(rng.normal(0, 1, n), 0.06) * 3.2
-    # 잔빗방울: 고역 성분 살짝
-    fine = highpass(rng.normal(0, 1, n), 0.35) * 0.10
-    # 창문에 부딪히는 불규칙한 세기 변화
-    env = 1.0 + 0.25 * lowpass(rng.normal(0, 1, n), 0.00012) * 6
-    x = (base + fine) * env
-    x *= 0.42
+    # 두 번 저역통과 → 고역(치찰음)을 확실히 죽인다
+    base = lowpass(lowpass(rng.normal(0, 1, n), 0.030), 0.030) * 9.0
+    # 이따금 창에 닿는 굵은 빗방울. 아주 약하게만.
+    drops = lowpass(rng.normal(0, 1, n), 0.12) * 0.05
+    # 빗발이 세졌다 약해졌다 하는 느린 흔들림
+    env = 1.0 + 0.30 * lowpass(rng.normal(0, 1, n), 0.00008) * 7
+    x = (base + drops) * env
+    x *= 0.26
     return loop_fade(x)
 
 

@@ -96,7 +96,7 @@ label act1_thursday:
 
     scene black with fade_slow
     scene bg backyard with fade_slow
-    show rain
+    show rain_hard
     "내려가는데 다리가 자꾸 헛디뎌졌다."
     "계단이 젖어서 그런 줄 알았는데, 1층까지 내려와서 보니까 손이 떨리고 있었다."
 
@@ -130,7 +130,7 @@ label act1_thursday:
     "사이렌이 멀리서 다가왔다."
     "나는 골목 입구를 다시 봤다."
     "{b}들어온 사람은 아무도 없었다.{/b} 나는 그 길을 사십 분 동안 보고 있었다."
-    hide rain
+    hide rain_hard
     stop ambient fadeout 3.0
 
 

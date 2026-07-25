@@ -26,7 +26,7 @@ label act1:
 
 ## 장면 1 — 편의점 ---------------------------------------------------
     scene bg room with fade_slow
-    play music rain fadein 3.0 loop
+    play music rain fadein 6.0 loop
     "비가 삼일째다."
     "냉장고를 열었다가 닫았다. 어제 사둔 게 아무것도 없었다."
     "밤 열한 시 반. 나는 슬리퍼를 신고 나갔다."
@@ -246,8 +246,9 @@ label act1_backpage:
 
 ## 선택 B-3 : 언니에게 알림 -----------------------------------------
 label act1_tellsister:
+    "나는 봉투랑 편지를 책상 위에 나란히 놓고 사진을 찍었다."
     show screen phone_ui("언니")
-    call pmsg("me", "(사진)")
+    call pmsg("me", "img:note")
     call pmsg("me", "이거 우리집 책상에 있었음")
     call pmsg("me", "문 다 잠겨있었는데")
     call pmsg("sister", "뭐야")
@@ -256,6 +257,7 @@ label act1_tellsister:
     call pmsg("sister", "문 잠갔어? 지금 당장 확인해")
     call pmsg("me", "잠겨있어")
     call pmsg("sister", "야 그거 사진 더 찍어서 보내봐 뒷장도")
+    call pmsg("me", "img:note")
     call pmsg("sister", "나 이거 어디서 본 것 같아")
     call pmsg("sister", "내가 지금 쫓는 건이랑 비슷해")
     call pmsg("sister", "자살로 처리된 사람들인데 이상한 게 좀 있어서 파고 있었거든")

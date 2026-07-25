@@ -59,15 +59,23 @@ transform slow_zoom:
 define fade_slow = Fade(1.0, 0.5, 1.0)
 define dissolve_slow = Dissolve(1.5)
 
-# 파티클 — 에셋 없이 Text 글리프로 구현.
-# 비: 얇은 세로선이 빠르게 수직 낙하.
+# 파티클 — 문자(│, ❄)를 쓰면 폰트에 글리프가 없어 네모(두부)로 표시된다.
+# 그래서 Solid 도형으로 만든다.
+
+# 비: 얇고 긴 세로선이 빠르게 수직 낙하.
 image rain = SnowBlossom(
-    Text("│", size=30, color="#9fb3c8"),
-    count=100, border=40, xspeed=(0, 0), yspeed=(700, 1000), fast=True
+    Solid("#9fb3c8aa", xsize=2, ysize=26),
+    count=110, border=40, xspeed=(0, 0), yspeed=(760, 1050), fast=True
 )
 
-# 눈: 천천히 흩날림.
+# 빗줄기가 굵을 때(살인 장면 등)
+image rain_hard = SnowBlossom(
+    Solid("#aebfd0cc", xsize=3, ysize=34),
+    count=170, border=40, xspeed=(-30, 0), yspeed=(900, 1250), fast=True
+)
+
+# 눈: 작은 점이 천천히 흩날림.
 image snow = SnowBlossom(
-    Text("❄", size=22, color="#ffffff"),
+    Solid("#ffffffcc", xsize=5, ysize=5),
     count=60, border=40, xspeed=(-20, 20), yspeed=(60, 140)
 )

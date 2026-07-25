@@ -17,9 +17,9 @@ define audio.paper = "audio/paper.wav"
 define audio.doorlock = "audio/doorlock.wav"
 define audio.stinger = "audio/stinger.wav"
 
-# 기본 볼륨 — 앰비언스는 대사를 방해하지 않게 낮게.
-define config.default_music_volume = 0.55
-define config.default_sfx_volume = 0.75
+# 기본 볼륨 — 빗소리가 계속 깔리므로 대사를 방해하지 않게 더 낮췄다.
+define config.default_music_volume = 0.32
+define config.default_sfx_volume = 0.65
 
 
 ## 편의 라벨 --------------------------------------------------------

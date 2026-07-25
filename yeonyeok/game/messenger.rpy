@@ -29,7 +29,9 @@ screen phone_ui(title="언니"):
                 mousewheel True
                 vbox:
                     spacing 10
+                    # body 가 "img:이미지이름" 이면 사진 말풍선으로 그린다.
                     for who, body in phone_log[-8:]:
+                        $ is_img = body.startswith("img:")
                         if who == "me":
                             hbox:
                                 xfill True
@@ -37,16 +39,22 @@ screen phone_ui(title="언니"):
                                 frame:
                                     xalign 1.0
                                     background Frame(Solid("#2e6b4f"), 10, 10)
-                                    padding (14, 10)
-                                    text body color "#ffffff" size 26
+                                    padding ((8, 8) if is_img else (14, 10))
+                                    if is_img:
+                                        add body[4:] xysize (300, 190)
+                                    else:
+                                        text body color "#ffffff" size 26
                         else:
                             hbox:
                                 xfill True
                                 frame:
                                     xalign 0.0
                                     background Frame(Solid("#22303a"), 10, 10)
-                                    padding (14, 10)
-                                    text body color "#e7f0f5" size 26
+                                    padding ((8, 8) if is_img else (14, 10))
+                                    if is_img:
+                                        add body[4:] xysize (300, 190)
+                                    else:
+                                        text body color "#e7f0f5" size 26
                                 null width 120
 
 # 통화 착신 화면
