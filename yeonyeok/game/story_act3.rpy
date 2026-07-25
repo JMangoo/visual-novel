@@ -137,6 +137,7 @@ label act3:
 
     # 붉은 점멸 → 천천히 어둑하게 드러남
     play sound stinger
+    $ buzz(220)
     scene cg_truth with Fade(0.12, 0.06, 2.2, color="#5e0000")
     pause 1.0
     "처음엔 그게 뭔지 몰랐다."
@@ -180,6 +181,7 @@ label act3:
     "그가 웃었다."
     nb "그렇게 물어보니까 좀 이상하네."
     play sound stinger
+    $ buzz(180)
     hide nb_normal
     show nb_true at stand_close with Fade(0.10, 0.04, 1.0, color="#3a0000")
     nbx "우리 이제 그렇게 안 해도 되잖아."

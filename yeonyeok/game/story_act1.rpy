@@ -145,6 +145,7 @@ label act1:
 
     show note at slide_in_right with dissolve_slow
     play sound stinger
+    $ buzz(90)
     "처음엔 우편물인 줄 알았다. 관리비 고지서나 뭐 그런 거."
     "근데 아니었다. 우표도, 주소도, 이름도 없었다. 아무것도 안 적혀 있었다."
     "그리고 {b}책상 위{/b}에 있었다. 우편함이 아니라."

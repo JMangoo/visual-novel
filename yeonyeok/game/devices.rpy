@@ -1,5 +1,20 @@
 ## 연출 장치 — 감시 시점 · 뉴스 · 통화 실패 · 예고장 · 회상 -----------
 
+## 햅틱(진동) ------------------------------------------------------
+# 웹에서만 동작한다. 안드로이드 크롬은 지원, iOS 사파리는 진동 API를 막아둬서
+# 아무 일도 일어나지 않는다. 지원 안 되면 조용히 넘어가므로 넣어둬도 무해하다.
+init python:
+    def buzz(ms=60):
+        try:
+            if renpy.emscripten:
+                import emscripten
+                emscripten.run_script(
+                    "if (navigator.vibrate) { navigator.vibrate(%d); }" % ms
+                )
+        except Exception:
+            pass  # 지원 안 하는 환경에서는 그냥 무시
+
+
 ## 감시 시점 (CCTV/홈캠) -------------------------------------------
 # 규칙: 정체를 절대 보여주지 않는다. 대사·설명 금지. 소름만 남긴다.
 

@@ -206,6 +206,7 @@ label act2_after_investigate:
     scene bg room with fade_slow
     "{size=-6}00:41{/size}"
     play sound stinger
+    $ buzz(120)
     play ambient heartbeat fadein 0.5 loop
     show bg room at shudder
     "소리가 났을 때 나는 그게 뭔지 몰랐다."

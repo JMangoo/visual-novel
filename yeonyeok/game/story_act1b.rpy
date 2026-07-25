@@ -81,6 +81,7 @@ label act1_thursday:
 
     hide rain
     play sound stinger
+    $ buzz(120)
     play ambient heartbeat fadein 0.5 loop
     show bg alley at shudder
     "그때 위에서 소리가 났다."
