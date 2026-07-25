@@ -21,15 +21,15 @@ screen phone_ui(title="언니"):
                 background Solid("#14202a")
                 padding (14, 10)
                 text title color "#e7f0f5" size 30 bold True
-            # 메시지 목록
+            # 메시지 목록 — 최근 것만 보여준다.
+            # 스크롤을 직접 내리지 않아도 늘 최신 메시지가 보이게 하기 위함.
             viewport:
                 id "vp"
                 xfill True yfill True
                 mousewheel True
-                scrollbars "vertical"
                 vbox:
                     spacing 10
-                    for who, body in phone_log:
+                    for who, body in phone_log[-8:]:
                         if who == "me":
                             hbox:
                                 xfill True

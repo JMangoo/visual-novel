@@ -34,6 +34,9 @@ for path in sorted(GAME_DIR.glob("*.rpy")):
                 continue
             if inner in ALLOWED:
                 continue
+            # 파이썬 인덱싱/슬라이싱 (phone_log[-8:], items[0] 등)
+            if re.fullmatch(r"[-+0-9:\s]*", inner):
+                continue
             problems.append((path.name, lineno, match.group(0)))
 
 if problems:
