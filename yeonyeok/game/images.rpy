@@ -1,12 +1,19 @@
 ## 임시 이미지 정의 (실제 아트로 교체 예정) ----------------------------
 
 # 배경 — Solid 색으로 대체, 라벨은 장면에서 텍스트로 안내.
-image bg room     = Solid("#141420")
-image bg hallway  = Solid("#101014")
-image bg alley    = Solid("#0c0f14")
-image bg store    = Solid("#161a12")
-image bg climax   = Solid("#1a0a0a")
+image bg room     = Solid("#141420")   # 703호 주인공의 집
+image bg hallway  = Solid("#101014")   # 7층 복도
+image bg alley    = Solid("#0c0f14")   # 골목/빌라 앞
+image bg store    = Solid("#161a12")   # 편의점
+image bg climax   = Solid("#1a0a0a")   # 작업실(3막)
 image black       = Solid("#000000")
+
+# 1막 추가 배경
+image bg elevator = Solid("#12141a")   # 아파트 1층 엘리베이터 앞
+image bg guard    = Solid("#15161a")   # 1층 경비실
+image bg shops    = Solid("#181410")   # 삼거리 상가
+image bg villa    = Solid("#0e1014")   # 박정호의 빌라(복도/실내)
+image bg backyard = Solid("#0a0c10")   # 빌라 뒤편
 
 # 캐릭터 — 내장 Placeholder 실루엣.
 image decoy_ph = Placeholder("boy")
