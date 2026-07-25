@@ -280,11 +280,11 @@ label act2_after_investigate:
     "40분이 없었다."
 
     # --- 감시 2회차: 대사 없음 ---
-    scene bg room
+    scene bg room_cam
     call surveil_start("2026-07-29 00:22:07", True)
     pause 3.0
     call surveil_end
-    scene bg room
+    scene bg room_cam
     call surveil_start("2026-07-29 00:26:44", True)
     show bg room at shudder
     pause 2.5

@@ -50,26 +50,20 @@ screen rec_only():
         text "●" size 30 color "#cc2222" at rec_blink
         text "REC" size 28 color "#c8c8c8"
 
-# 감시 시점 진입/이탈 (흑백 + 스캔라인 + 떨림)
+# 감시 시점 진입/이탈
+#
+# 예전에는 `show layer master at surveil_gray` 로 화면 전체에 matrixcolor 를
+# 걸고 무한 떨림까지 돌렸다. PC에서는 돌아갔지만 아이폰 사파리에서는 매 프레임
+# 전체 화면을 셰이더로 재합성하느라 그대로 멈춰버렸다.
+# 그래서 흑백 처리는 미리 만들어둔 *_cam.jpg 로 대체하고(런타임 비용 0),
+# 이 라벨은 오버레이만 켜고 끈다.
 label surveil_start(stamp="2026-07-24 00:03:41", rec=True):
     $ renpy.show_screen("surveil_overlay", stamp=stamp, rec=rec)
-    show layer master at surveil_gray
     return
 
 label surveil_end:
     hide screen surveil_overlay
-    show layer master
     return
-
-# 화면 전체를 흑백 + 살짝 떨리게
-transform surveil_gray:
-    matrixcolor SaturationMatrix(0.0) * BrightnessMatrix(-0.15)
-    subpixel True
-    block:
-        linear 0.09 xoffset 1
-        linear 0.09 xoffset -1
-        linear 0.09 xoffset 0
-        repeat
 
 
 ## 뉴스 기사 화면 ---------------------------------------------------
@@ -115,24 +109,21 @@ screen notice_paper():
 
 
 ## 회상 컷 ---------------------------------------------------------
-# clear=True  → 선명하게(들어준 경우)
-# clear=False → 흐릿한 실루엣(무시한 경우)
-transform recall_clear:
-    matrixcolor SaturationMatrix(0.35) * BrightnessMatrix(-0.05)
-    zoom 1.02
-
-transform recall_blur:
-    matrixcolor SaturationMatrix(0.0) * BrightnessMatrix(-0.35)
-    alpha 0.55
-    zoom 1.02
+# clear=True  → 선명하게(들어준 경우) / clear=False → 흐릿하게(무시한 경우)
+#
+# 감시 연출과 같은 이유로 matrixcolor + show layer master 를 걷어냈다.
+# 대신 반투명 막을 덮어 '기억이 흐리다'를 표현한다. 모바일에서도 가볍다.
+screen recall_veil(clear=False):
+    zorder 85
+    if clear:
+        add Solid("#0a0c1044")
+    else:
+        add Solid("#0a0c10bb")
 
 label recall_start(clear=False):
-    if clear:
-        show layer master at recall_clear
-    else:
-        show layer master at recall_blur
+    $ renpy.show_screen("recall_veil", clear=clear)
     return
 
 label recall_end:
-    show layer master
+    hide screen recall_veil
     return

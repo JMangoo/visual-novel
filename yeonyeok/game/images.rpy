@@ -26,6 +26,10 @@ image cg_truth = "images/bg/cg_sister.jpg"
 # 예고장(문서)
 image note = "images/bg/note.jpg"
 
+# 감시 카메라 시점용 흑백 판. 런타임 셰이더 대신 미리 만들어둔 이미지를 쓴다.
+image bg room_cam     = "images/bg/room_cam.jpg"
+image bg basement_cam = "images/bg/basement_cam.jpg"
+
 
 ## 캐릭터 스프라이트 ------------------------------------------------
 ## 원본 art/chars/, 변환 art/process_chars.py (rembg로 배경 제거)

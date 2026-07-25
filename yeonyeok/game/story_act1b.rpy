@@ -202,7 +202,7 @@ label act1_thursday:
     scene black with fade_slow
 
     # --- 감시 시점 1회차: 대사 없음, 설명 없음 ---
-    scene bg room
+    scene bg room_cam
     call surveil_start("2026-07-24 00:03:41", True)
     pause 3.0
     pause 2.0
