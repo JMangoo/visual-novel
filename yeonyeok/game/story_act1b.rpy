@@ -131,16 +131,21 @@ label act1_thursday:
     "책상 위에 봉투가 하나 더 있었다."
 
     show note at slide_in_right with dissolve_slow
-    killer "봤지?"
-    killer "넌 열 시 반에 도착했고, 골목 입구를 봤어. 거기가 유일한 진입로라고 생각했으니까."
-    killer "열한 시 이 분에 안심했고. 숨을 한 번 뱉었지."
-    killer "그리고 그 다음에 소리가 났어. 내가 그때 하기로 정해놨거든."
+    killer "봤어?"
+    killer "너 열 시 반에 왔어. 우산 안 쓰고. 골목 입구만 봤지. 거기가 하나뿐인 길이니까."
+    killer "그거 맞아. 나라도 그렇게 했어. 너는 똑똑해."
+    killer "열한 시 이 분에 숨을 뱉었지."
+    killer "그 얼굴 보려고 이 분을 기다린 거야. 끝났다고 생각하는 얼굴. 어깨가 내려가는 거."
+    killer "그거 딱 한 번밖에 안 나와. 두 번은 안 나와."
     hide note
     show bg room at shudder
     show note at slide_in_right
-    killer "사람들은 그 사람이 술 먹고 떨어졌다고 할 거야. 실제로 그렇게 처리될 거고."
-    killer "그걸 아는 사람은 이 세상에 너랑 나 둘뿐이야."
-    killer "외롭지? 나도 그랬어."
+    killer "이제 그 사람은 술 먹고 떨어진 사람이야. 서류에도 그렇게 적혀."
+    killer "다들 그렇게 믿을 거야. 아주 쉽게 믿어. 사람은 원래 무너질 이유를 하나씩 갖고 사니까."
+    killer "나는 그걸 꺼내서 보여주기만 해. 만들어내는 게 아니야. 있는 걸 보여주는 거야."
+    killer "그 사람이 어떻게 됐는지 아는 건 둘뿐이야. 나랑 너."
+    killer "이제 우리 사이에 생긴 거야. 하나."
+    killer "좋다."
     killer "{b}「사람은 결국,」{/b}"
     hide note with dissolve
 
