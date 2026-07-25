@@ -51,6 +51,7 @@ FILE_PRESET = {
     "stairsdown": "dark",
     "basement": "dark",
     "morning": "dawn",
+    "empty704": "indoor",
 }
 
 
