@@ -29,8 +29,28 @@ PRESETS = {
     "night":  dict(bright=0.42, sat=0.35, contrast=1.10, blue=26, grain=14, vignette=0.55),
     # 실내 — 조금 덜 어둡게(대사 가독성)
     "indoor": dict(bright=0.52, sat=0.40, contrast=1.05, blue=18, grain=11, vignette=0.45),
-    # 형광등 아래(편의점 등) — 차갑고 창백하게
-    "rain":   dict(bright=0.48, sat=0.30, contrast=1.15, blue=30, grain=16, vignette=0.60),
+    # 이미 어두운 야경 사진 — 더 어둡게 하면 안 보이므로 살짝만
+    "neon":   dict(bright=0.72, sat=0.32, contrast=1.08, blue=16, grain=13, vignette=0.50),
+    # 지하 — 가장 어둡고 답답하게
+    "dark":   dict(bright=0.46, sat=0.28, contrast=1.12, blue=14, grain=15, vignette=0.70),
+    # 아침 — 색은 빠졌지만 밝기는 남긴다
+    "dawn":   dict(bright=0.68, sat=0.22, contrast=1.02, blue=12, grain=10, vignette=0.40),
+}
+
+# 파일별 프리셋. 여기 없으면 기본값(--preset, 기본 night) 사용.
+FILE_PRESET = {
+    "room": "indoor",
+    "hallway": "indoor",
+    "elevator": "indoor",
+    "guard": "indoor",
+    "villa": "indoor",
+    "store": "neon",
+    "alley": "night",
+    "backyard": "night",
+    "shops": "night",
+    "stairsdown": "dark",
+    "basement": "dark",
+    "morning": "dawn",
 }
 
 
@@ -114,11 +134,12 @@ def main():
 
     OUT.mkdir(parents=True, exist_ok=True)
     for p in photos:
+        use = FILE_PRESET.get(p.stem, preset)
         out = OUT / f"{p.stem}.png"
-        process(p, preset).save(out, "PNG")
-        print(f"  {p.name}  ->  game/images/bg/{out.name}")
+        process(p, use).save(out, "PNG")
+        print(f"  {p.name:18} [{use:6}] ->  game/images/bg/{out.name}")
 
-    print(f"\n{len(photos)}장 변환 완료 (프리셋: {preset})")
+    print(f"\n{len(photos)}장 변환 완료")
 
 
 if __name__ == "__main__":

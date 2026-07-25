@@ -1,25 +1,25 @@
 ## 임시 이미지 정의 (실제 아트로 교체 예정) ----------------------------
 
-# 배경 — Solid 색으로 대체, 라벨은 장면에서 텍스트로 안내.
-image bg room     = Solid("#141420")   # 703호 주인공의 집
-image bg hallway  = Solid("#101014")   # 7층 복도
-image bg alley    = Solid("#0c0f14")   # 골목/빌라 앞
-image bg store    = Solid("#161a12")   # 편의점
-image bg climax   = Solid("#1a0a0a")   # 작업실(3막)
+# 배경 — 실사 사진에 필터를 입힌 것. 원본은 art/raw/, 변환은 art/process_bg.py
+image bg room     = "images/bg/room.png"        # 703호 주인공의 집
+image bg hallway  = "images/bg/hallway.png"     # 7층 복도
+image bg alley    = "images/bg/alley.png"       # 골목/빌라 앞
+image bg store    = "images/bg/store.png"       # 편의점
 image black       = Solid("#000000")
 
-# 1막 추가 배경
-image bg elevator = Solid("#12141a")   # 아파트 1층 엘리베이터 앞
-image bg guard    = Solid("#15161a")   # 1층 경비실
-image bg shops    = Solid("#181410")   # 삼거리 상가
-image bg villa    = Solid("#0e1014")   # 박정호의 빌라(복도/실내)
-image bg backyard = Solid("#0a0c10")   # 빌라 뒤편
+image bg elevator = "images/bg/elevator.png"    # 아파트 1층 엘리베이터 앞
+image bg guard    = "images/bg/guard.png"       # 1층 경비실
+image bg shops    = "images/bg/shops.png"       # 삼거리 상가
+image bg villa    = "images/bg/villa.png"       # 빌라 복도/계단
+image bg backyard = "images/bg/backyard.png"    # 빌라 뒤편
 
-# 3막 추가 배경
-image bg stairsdown = Solid("#08090c")  # 지하로 내려가는 계단
-image bg basement   = Solid("#0b0a0c")  # 지하 2층 작업실
-image bg empty704   = Solid("#131316")  # 텅 빈 704호
-image bg morning    = Solid("#2a2c33")  # 비 그친 아침 거리
+image bg stairsdown = "images/bg/stairsdown.png"  # 지하로 내려가는 계단
+image bg basement   = "images/bg/basement.png"    # 지하 2층 작업실
+image bg morning    = "images/bg/morning.png"     # 비 그친 아침 거리
+
+# 아직 사진이 없는 것
+image bg empty704 = Solid("#131316")   # 텅 빈 704호 (복도 사진으로 대체 가능)
+image bg climax   = "images/bg/basement.png"   # 구 스켈레톤 호환
 
 # 캐릭터 — 내장 Placeholder 실루엣.
 image decoy_ph = Placeholder("boy")
