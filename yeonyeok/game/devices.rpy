@@ -18,29 +18,19 @@ init python:
 ## 감시 시점 (CCTV/홈캠) -------------------------------------------
 # 규칙: 정체를 절대 보여주지 않는다. 대사·설명 금지. 소름만 남긴다.
 
-# 화면 거칠게 만드는 스캔라인(가로줄) 오버레이
-image surveil_scanlines = Tile(Solid("#00000055", xsize=4, ysize=2))
-
-# 미세하게 떨리는 손떨림/노이즈 모션
-transform surveil_jitter:
-    subpixel True
-    block:
-        linear 0.08 xoffset 1 yoffset 0
-        linear 0.08 xoffset 0 yoffset 1
-        linear 0.08 xoffset -1 yoffset 0
-        linear 0.08 xoffset 0 yoffset 0
-        repeat
+# 스캔라인.
+# 예전엔 Tile(Solid(4x2)) 로 깔았는데, 1920x1080 이면 타일이 26만 개라
+# 매 프레임 그 수만큼 그려야 해서 아이폰이 멈췄다. 미리 구운 PNG 한 장으로 대체.
+image surveil_scanlines = "images/scanlines.png"
 
 # 감시 화면 오버레이(타임스탬프 + REC 표시)
+# 모바일에서 멈추지 않도록 최대한 단순하게 유지한다.
+# 폰트는 지정하지 않는다(게임 기본 폰트 사용) — 웹에서 폰트 로딩이 걸릴 수 있어서.
 screen surveil_overlay(stamp="2026-07-24 00:03:41", rec=True):
     zorder 100
     add "surveil_scanlines"
-    # 비네팅(가장자리 어둡게) 대용
     add Solid("#00000033")
-    text stamp:
-        xalign 0.98 yalign 0.96
-        size 28 color "#c8c8c8"
-        font "DejaVuSans.ttf"
+    text stamp xalign 0.98 yalign 0.96 size 28 color "#c8c8c8"
     if rec:
         hbox:
             xalign 0.03 yalign 0.96
@@ -48,11 +38,11 @@ screen surveil_overlay(stamp="2026-07-24 00:03:41", rec=True):
             text "●" size 30 color "#cc2222" at rec_blink
             text "REC" size 28 color "#c8c8c8"
 
-# REC 점멸
+# REC 점멸. 한 요소에만 걸리는 가벼운 애니메이션.
 transform rec_blink:
     block:
-        linear 0.6 alpha 1.0
-        linear 0.6 alpha 0.2
+        linear 0.7 alpha 1.0
+        linear 0.7 alpha 0.25
         repeat
 
 # REC 표시만 단독으로. 감시 화면 전환 없이 '녹화 중'만 알린다.
