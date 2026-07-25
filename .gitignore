@@ -16,3 +16,6 @@ dist/
 # OS
 Thumbs.db
 .DS_Store
+
+# 배경 원본 사진(용량 큼, 변환본만 커밋)
+/art/raw/
