@@ -138,13 +138,22 @@ def main():
         return
 
     OUT.mkdir(parents=True, exist_ok=True)
+    total = 0
     for p in photos:
         use = FILE_PRESET.get(p.stem, preset)
-        out = OUT / f"{p.stem}.png"
-        process(p, use).save(out, "PNG")
-        print(f"  {p.name:18} [{use:6}] ->  game/images/bg/{out.name}")
+        # 배경은 사진이라 투명도가 필요 없다. PNG로 두면 장당 2MB가 넘어
+        # 웹 빌드에서 모바일 다운로드가 무거워지므로 JPEG로 저장한다.
+        out = OUT / f"{p.stem}.jpg"
+        process(p, use).save(out, "JPEG", quality=88, optimize=True, progressive=True)
+        kb = out.stat().st_size // 1024
+        total += kb
+        # 예전 PNG가 남아 있으면 정리
+        old_png = OUT / f"{p.stem}.png"
+        if old_png.exists():
+            old_png.unlink()
+        print(f"  {p.name:18} [{use:6}] ->  bg/{out.name:16} {kb:>5} KB")
 
-    print(f"\n{len(photos)}장 변환 완료")
+    print(f"\n{len(photos)}장 변환 완료 · 합계 {total/1024:.1f} MB")
 
 
 if __name__ == "__main__":

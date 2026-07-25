@@ -1,30 +1,30 @@
 ## 임시 이미지 정의 (실제 아트로 교체 예정) ----------------------------
 
 # 배경 — 실사 사진에 필터를 입힌 것. 원본은 art/raw/, 변환은 art/process_bg.py
-image bg room     = "images/bg/room.png"        # 703호 주인공의 집
-image bg hallway  = "images/bg/hallway.png"     # 7층 복도
-image bg alley    = "images/bg/alley.png"       # 골목/빌라 앞
-image bg store    = "images/bg/store.png"       # 편의점
+image bg room     = "images/bg/room.jpg"        # 703호 주인공의 집
+image bg hallway  = "images/bg/hallway.jpg"     # 7층 복도
+image bg alley    = "images/bg/alley.jpg"       # 골목/빌라 앞
+image bg store    = "images/bg/store.jpg"       # 편의점
 image black       = Solid("#000000")
 
-image bg elevator = "images/bg/elevator.png"    # 아파트 1층 엘리베이터 앞
-image bg guard    = "images/bg/guard.png"       # 1층 경비실
-image bg shops    = "images/bg/shops.png"       # 삼거리 상가
-image bg villa    = "images/bg/villa.png"       # 빌라 복도/계단
-image bg backyard = "images/bg/backyard.png"    # 빌라 뒤편
+image bg elevator = "images/bg/elevator.jpg"    # 아파트 1층 엘리베이터 앞
+image bg guard    = "images/bg/guard.jpg"       # 1층 경비실
+image bg shops    = "images/bg/shops.jpg"       # 삼거리 상가
+image bg villa    = "images/bg/villa.jpg"       # 빌라 복도/계단
+image bg backyard = "images/bg/backyard.jpg"    # 빌라 뒤편
 
-image bg stairsdown = "images/bg/stairsdown.png"  # 지하로 내려가는 계단
-image bg basement   = "images/bg/basement.png"    # 지하 2층 작업실
-image bg morning    = "images/bg/morning.png"     # 비 그친 아침 거리
+image bg stairsdown = "images/bg/stairsdown.jpg"  # 지하로 내려가는 계단
+image bg basement   = "images/bg/basement.jpg"    # 지하 2층 작업실
+image bg morning    = "images/bg/morning.jpg"     # 비 그친 아침 거리
 
-image bg empty704 = "images/bg/empty704.png"   # 텅 빈 704호
-image bg climax   = "images/bg/basement.png"   # 구 스켈레톤 호환
+image bg empty704 = "images/bg/empty704.jpg"   # 텅 빈 704호
+image bg climax   = "images/bg/basement.jpg"   # 구 스켈레톤 호환
 
 # 최후의 진실 CG — 역광 실루엣
-image cg_truth = "images/bg/cg_sister.png"
+image cg_truth = "images/bg/cg_sister.jpg"
 
 # 예고장(문서)
-image note = "images/bg/note.png"
+image note = "images/bg/note.jpg"
 
 
 ## 캐릭터 스프라이트 ------------------------------------------------
